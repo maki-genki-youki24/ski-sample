@@ -10,7 +10,14 @@ function theme_enqueue_styles() {
     );
 }
 
+// JavaScriptの読み込み
+function my_script() {
 
+	wp_enqueue_script('makigenkiyouki', get_template_directory_uri().'/assets/js/makigenkiyouki.js', array(), false, 
+	true);
+	
+	}
+	add_action('wp_enqueue_scripts', 'my_script');
 
 
 function twentytwenty_theme_support() {

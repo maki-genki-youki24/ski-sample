@@ -38,6 +38,24 @@
 /*//////////////////////////////////////////////////////////////////////////////
 //オリジナル
 ////////////////////////////////////////////////////////////////////////////////*/
+/* フッター */
+.wrapper {
+  min-height: 100vh;
+  position: relative; /*←相対位置*/
+  padding-bottom: 120px; /*←footerの高さ*/
+  box-sizing: border-box; /*←全て含めてmin-height:100vhに*/
+}
+footer {
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  padding: 30px 0;
+
+  position: absolute; /*←絶対位置*/
+  bottom: 0; /*下に固定*/
+}
+
+/* マテリアルアイコン */
 .material-icons.md-18 {
   font-size: 18px;
 }
@@ -54,6 +72,7 @@
   font-size: 60px;
 }
 
+/* お問い合わせ */
 .spaceLeft {
   padding: 0 0 0 25px;
   float: left;
@@ -68,12 +87,11 @@
   bottom: 0;
   overflow: hidden;
 }
-
 #video {
   /* 上下左右中央に配置 */
   position: absolute;
-  /* z-index: -1; */
-  z-index: auto;
+  z-index: -1;
+  /* z-index: auto; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -82,6 +100,98 @@
   height: 56.25vw; /* 16:9の幅 → 9 ÷ 16 = 56.25% */
   min-height: 100%;
   min-width: 100%;
+}
+
+/*========= レイアウトのためのCSS ===============*/
+
+p {
+  margin: 20px 10px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+/*==================================================
+背景色が伸びて文字出現
+===================================*/
+
+/*全共通*/
+
+.bgextend {
+  animation-name: bgextendAnimeBase;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  position: relative;
+  overflow: hidden; /*　はみ出た色要素を隠す　*/
+  opacity: 0;
+}
+
+@keyframes bgextendAnimeBase {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/*中の要素*/
+.bgappear {
+  animation-name: bgextendAnimeSecond;
+  animation-duration: 1s;
+  animation-delay: 0.6s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes bgextendAnimeSecond {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*左から右*/
+.bgLRextend::before {
+  animation-name: bgLRextendAnime;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #666; /*伸びる背景色の設定*/
+}
+@keyframes bgLRextendAnime {
+  0% {
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  50% {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+  50.001% {
+    transform-origin: right;
+  }
+  100% {
+    transform-origin: right;
+    transform: scaleX(0);
+  }
+}
+
+/* スクロールをしたら出現する要素にはじめに透過0を指定　*/
+.bgappearTrigger,
+.bgLRextendTrigger {
+  opacity: 0;
 }
 
 /*//////////////////////////////////////////////////////////////////////////////

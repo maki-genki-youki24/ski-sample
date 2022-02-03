@@ -16,7 +16,7 @@
 
 get_header();
 ?>
-<!-- マテリアルアイコン -->
+<!-- マテリアルアイコン　読み込み -->
 <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp|Material+Icons+Two+Tone" rel="stylesheet">
 <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
 <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
@@ -26,120 +26,38 @@ get_header();
 
 <main id="site-content">
 
-<video id="video" poster="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-3-1/img/movie.jpg" webkit-playsinline playsinline muted autoplay loop>
-    <!--
-        poster：動画ファイルが利用できない環境で代替表示される画像
-        webkit-playsinline：iOS 9までのSafari用インライン再生指定
-        playsinline：iOS 10以降のSafari用インライン再生指定
-        muted：音声をミュートさせる
-        autoplay：動画を自動再生させる
-        loop：動画をループさせる
-        controls：コントロールバーを表示する
-    -->
-  <source src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-3-1/video/movie.mp4" type="video/mp4">
-  <source src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-3-1/video/movie.ogv" type="video/ogv">
-  <source src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-3-1/video/movie.webm" type="video/webm">
-  <p>動画を再生できる環境ではありません。</p>
-  </video>
-  <div id="container">
-  <p>ここにコンテンツが入ります</p>  
-  <!--/container--></div> 
+	<div> 
+	<p><span class="bgextend bgLRextendTrigger"><span class="bgappearTrigger">SURF&SNOW</span></span></p>
+	</div>
+	<video id="video" poster="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-3-1/img/movie.jpg" webkit-playsinline playsinline muted autoplay loop>
+		<!--
+			poster：動画ファイルが利用できない環境で代替表示される画像
+			webkit-playsinline：iOS 9までのSafari用インライン再生指定
+			playsinline：iOS 10以降のSafari用インライン再生指定
+			muted：音声をミュートさせる
+			autoplay：動画を自動再生させる
+			loop：動画をループさせる
+			controls：コントロールバーを表示する
+		-->
+		<source src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-3-1/video/movie.mp4" type="video/mp4">
+		<source src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-3-1/video/movie.ogv" type="video/ogv">
+		<source src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-3-1/video/movie.webm" type="video/webm">
+		<p>動画を再生できる環境ではありません。</p>
+	</video>
 
-	<?php
 
-	// $archive_title    = '';
-	// $archive_subtitle = '';
 
-	// if ( is_search() ) {
-	// 	global $wp_query;
 
-	// 	$archive_title = sprintf(
-	// 		'%1$s %2$s',
-	// 		'<span class="color-accent">' . __( 'Search:', 'twentytwenty' ) . '</span>',
-	// 		'&ldquo;' . get_search_query() . '&rdquo;'
-	// 	);
 
-	// 	if ( $wp_query->found_posts ) {
-	// 		$archive_subtitle = sprintf(
-	// 			/* translators: %s: Number of search results. */
-	// 			_n(
-	// 				'We found %s result for your search.',
-	// 				'We found %s results for your search.',
-	// 				$wp_query->found_posts,
-	// 				'twentytwenty'
-	// 			),
-	// 			number_format_i18n( $wp_query->found_posts )
-	// 		);
-	// 	} else {
-	// 		$archive_subtitle = __( 'We could not find any results for your search. You can give it another try through the search form below.', 'twentytwenty' );
-	// 	}
-	// } elseif ( is_archive() && ! have_posts() ) {
-	// 	$archive_title = __( 'Nothing Found', 'twentytwenty' );
-	// } elseif ( ! is_home() ) {
-	// 	$archive_title    = get_the_archive_title();
-	// 	$archive_subtitle = get_the_archive_description();
-	// }
 
-	// if ( $archive_title || $archive_subtitle ) {
-		?>
 
-		<header class="archive-header has-text-align-center header-footer-group">
 
-			<div class="archive-header-inner section-inner medium">
 
-				<?php if ( $archive_title ) { ?>
-					<h1 class="archive-title"><?php echo wp_kses_post( $archive_title ); ?></h1>
-				<?php } ?>
 
-				<?php if ( $archive_subtitle ) { ?>
-					<div class="archive-subtitle section-inner thin max-percentage intro-text"><?php echo wp_kses_post( wpautop( $archive_subtitle ) ); ?></div>
-				<?php } ?>
 
-			</div><!-- .archive-header-inner -->
-
-		</header><!-- .archive-header -->
-
-		<?php
-	// }
-
-	// if ( have_posts() ) {
-
-	// 	$i = 0;
-
-	// 	while ( have_posts() ) {
-	// 		$i++;
-	// 		if ( $i > 1 ) {
-	// 			echo '<hr class="post-separator styled-separator is-style-wide section-inner" aria-hidden="true" />';
-	// 		}
-	// 		the_post();
-
-	// 		get_template_part( 'template-parts/content', get_post_type() );
-
-	// 	}
-	// } elseif ( is_search() ) {
-		?>
-
-		<div class="no-search-results-form section-inner thin">
-
-			<?php
-			// get_search_form(
-			// 	array(
-			// 		'aria_label' => __( 'search again', 'twentytwenty' ),
-			// 	)
-			// );
-			?>
-
-		</div><!-- .no-search-results -->
-
-		<?php
-	// }
-	?>
-
-	<?php get_template_part( 'template-parts/pagination' ); ?>
 
 </main><!-- #site-content -->
 
-<?php get_template_part( 'template-parts/footer-menus-widgets' ); ?>
 
-<?php
-get_footer();
+
+<?php get_footer();?>
