@@ -77,21 +77,23 @@ footer {
   padding: 0 0 0 25px;
   float: left;
 }
+
 /* ビデオアニメーション */
 #video-area {
   position: fixed;
-  z-index: -1; /*最背面に設定*/
+  z-index: -1;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
+  /* 領域内に収まりきらない内容を表示しない */
+  opacity: 0.9; /* 要素透明率 */
 }
 #video {
   /* 上下左右中央に配置 */
   position: absolute;
   z-index: -1;
-  /* z-index: auto; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -102,36 +104,75 @@ footer {
   min-width: 100%;
 }
 
-/*========= レイアウトのためのCSS ===============*/
-
-p {
-  margin: 20px 10px;
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-@media screen and (max-width: 768px) {
-  p {
-    font-size: 0.9rem;
-  }
-}
-
 /*==================================================
 背景色が伸びて文字出現
 ===================================*/
+/*========= レイアウトのためのCSS ===============*/
 
-/*全共通*/
+.animeLogo {
+  position: relative;
+}
+.animeLogoString {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 0;
+}
+#moveLogo {
+  font-size: 80px;
+  color: #ffc639;
+  letter-spacing: 3px;
+}
+#moveLogoSub {
+  color: #ffc639;
+  letter-spacing: 2px;
+  font-size: 30px;
+}
+/* スマホ用のスタイリング */
+@media screen and (max-width: 768px) {
+  #moveLogo {
+    /* font-size: 48px; */
+  }
+}
 
+/*全共通 /中の文字と左から右アニメーション*/
+/* メインロゴ */
 .bgextend {
   animation-name: bgextendAnimeBase;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
+  animation-duration: 2s; /* 1 回のアニメーション周期が完了するまでの所要時間 */
+  animation-fill-mode: forwards; /* アニメーション終了後の状態を指定する@keyframesの「100%(to)」のスタイルが適用 */
   position: relative;
   overflow: hidden; /*　はみ出た色要素を隠す　*/
   opacity: 0;
 }
 
 @keyframes bgextendAnimeBase {
+  /* 最初と最後だけ指定する場合はfrom /toでも指定できる */
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+/* サブロゴ */
+.bgextendSub {
+  animation-name: bgextendAnimeBaseSub;
+  animation-duration: 2s; /* 1 回のアニメーション周期が完了するまでの所要時間 */
+  animation-delay: 1s; /* アニメーションをいつ開始するかを指定 */
+  animation-fill-mode: forwards; /* アニメーション終了後の状態を指定する@keyframesの「100%(to)」のスタイルが適用 */
+  position: relative;
+  overflow: hidden; /*　はみ出た色要素を隠す　*/
+  opacity: 0;
+}
+
+@keyframes bgextendAnimeBaseSub {
+  /* 最初と最後だけ指定する場合はfrom /toでも指定できる */
   from {
     opacity: 0;
   }
@@ -141,12 +182,19 @@ p {
   }
 }
 
-/*中の要素*/
+/*中の要素(/文字の部分)*/
 .bgappear {
   animation-name: bgextendAnimeSecond;
-  animation-duration: 1s;
-  animation-delay: 0.6s;
-  animation-fill-mode: forwards;
+  animation-duration: 2s; /* 1 回のアニメーション周期が完了するまでの所要時間 */
+  animation-delay: 0.6s; /* アニメーションをいつ開始するかを指定 */
+  animation-fill-mode: forwards; /* アニメーション終了後の状態を指定する@keyframesの「100%(to)」のスタイルが適用 */
+  opacity: 0;
+}
+.bgappearSub {
+  animation-name: bgextendAnimeSecond;
+  animation-duration: 2s; /* 1 回のアニメーション周期が完了するまでの所要時間 */
+  animation-delay: 1s; /* アニメーションをいつ開始するかを指定 */
+  animation-fill-mode: forwards; /* アニメーション終了後の状態を指定する@keyframesの「100%(to)」のスタイルが適用 */
   opacity: 0;
 }
 
@@ -159,16 +207,28 @@ p {
   }
 }
 
-/*左から右*/
+/* スクロールをしたら出現する要素にはじめに透過0を指定　*/
+.bgappearTrigger,
+.bgLRextendTrigger {
+  opacity: 0;
+}
+/* スクロールをしたら出現する要素にはじめに透過0を指定　*/
+.bgappearSubTrigger,
+.bgLRextendSubTrigger {
+  opacity: 0;
+}
+/*左から右アニメ(メインロゴ)*/
 .bgLRextend::before {
   animation-name: bgLRextendAnime;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
+  animation-duration: 2s; /* 1 回のアニメーション周期が完了するまでの所要時間 */
+  animation-fill-mode: forwards; /* アニメーション終了後の状態を指定する@keyframesの「100%(to)」のスタイルが適用 */
   content: "";
   position: absolute;
   width: 100%;
-  height: 100%;
-  background-color: #666; /*伸びる背景色の設定*/
+  /* height: 100%; */
+  height: 80px;
+  background-color: #ffc639; /*伸びる背景色の設定*/
+  opacity: 1;
 }
 @keyframes bgLRextendAnime {
   0% {
@@ -188,10 +248,36 @@ p {
   }
 }
 
-/* スクロールをしたら出現する要素にはじめに透過0を指定　*/
-.bgappearTrigger,
-.bgLRextendTrigger {
-  opacity: 0;
+/*左から右アニメ(サブロゴ)*/
+.bgLRextendSub::before {
+  animation-name: bgLRextendSubAnime;
+  animation-delay: 1s; /* アニメーションをいつ開始するかを指定 */
+  animation-duration: 2s; /* 1 回のアニメーション周期が完了するまでの所要時間 */
+  animation-fill-mode: forwards; /* アニメーション終了後の状態を指定する@keyframesの「100%(to)」のスタイルが適用 */
+  content: "";
+  position: absolute;
+  width: 100%;
+  /* height: 100%; */
+  height: 30px;
+  background-color: #ffc639; /*伸びる背景色の設定*/
+  opacity: 1;
+}
+@keyframes bgLRextendSubAnime {
+  0% {
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  50% {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+  50.001% {
+    transform-origin: right;
+  }
+  100% {
+    transform-origin: right;
+    transform: scaleX(0);
+  }
 }
 
 /*//////////////////////////////////////////////////////////////////////////////
@@ -204,13 +290,13 @@ body {
   padding: 0;
 }
 
-h1,
+/* h1,
 h2,
 h3,
 h4,
 h5,
-h6,
-p,
+h6, */
+/* p, */
 blockquote,
 address,
 big,
@@ -1356,9 +1442,9 @@ button.toggle {
 /* Image Classes ----------------------------- */
 
 .bg-image {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-position: center; /* 画像表示位置 */
+  background-repeat: no-repeat; /* 画像表示を繰り返さない */
+  background-size: cover; /* 画像をコンテナーいっぱいにできるだけ大きく拡大縮小 */
 }
 
 .bg-attachment-fixed {
