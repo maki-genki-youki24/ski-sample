@@ -22,11 +22,11 @@ get_header();
 <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
 <!-- <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-3-1/css/6-3-1.css"> -->
 <main>
-<div class="">
+
 	<div class="animeLogo">
 		<!-- ビデオ背景 -->	
-		<div id="video-area">
-			<video id="video" poster="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-3-1/img/movie.jpg" webkit-playsinline playsinline muted autoplay loop>
+		<div id="video-area" >
+			<video id="video video-area" poster="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-3-1/img/movie.jpg" webkit-playsinline playsinline muted autoplay loop>
 				<!--
 					poster：動画ファイルが利用できない環境で代替表示される画像
 					webkit-playsinline：iOS 9までのSafari用インライン再生指定
@@ -50,22 +50,66 @@ get_header();
 					<h4 id="moveLogoSub"><span class="bgextendSub bgLRextendSubTrigger"><span class="bgappearSubTrigger" >スキー&スノボを楽しむための情報サイト</span></span></h4>
 				</div>
 			</div><!-- アニメロゴ -->		
-		</div><!-- video-area -->	
+		</div>	
 	</div><!-- animeLogo -->
 
-
-
-</div>	<!-- container -->
-
-
-
-
-
-
+	<section>
+		<h2>おすすめスキー場</h2>
+			<p>
+				SURF&SNOWでは
+				<br> 各地のおすすめスキー場を
+				<br>紹介しています。
+				<br>
+				<br>各スキー場の口コミや
+				<br>イベントなども紹介して
+				<br>います。
+			</p>
+	</section>
+	<section>
+		<h2>ゲレンデ情報</h2>
+			<p>
+				SURF&SNOWでは
+				<br>各地のスキー場の
+				<br>ゲレンデ情報を
+				<br>配信しています。
+				<br>
+				<br>各スキー場の口コミや
+				<br>イベントなども紹介して
+				<br>います。
+			</p>
+	</section>
+	<section>
+		<h2>周辺の宿泊先</h2>
+			<p>
+				SURF&SNOWでは
+				<br>各地のスキー場の
+				<br>周辺の宿泊先情報を
+				<br>配信しています。
+				<br>
+				<br>各スキー場の口コミや
+				<br>イベントなども紹介して
+				<br>います。
+			</p>
+	</section>
+	<section>
+		<h2>積雪情報</h2>
+			<p>
+				SURF&SNOWでは
+				<br>各地のスキー場の
+				<br>積雪情報を
+				<br>配信しています。
+				<br>
+				<br>各スキー場の口コミや
+				<br>イベントなども紹介して
+				<br>います。
+			</p>
+	</section>
 
 
 </main><!-- #site-content -->
 
 
 
-<?php get_footer();?>
+<?php 
+get_footer();
+?>
