@@ -63,27 +63,18 @@ jQuery(window).on("load", function () {
   BgFadeAnime(); /* アニメーション用の関数を呼ぶ*/
 }); // ここまで画面が読み込まれたらすぐに動かしたい場合の記述
 
-/////////////////////////////////////////////////////////////////////
-////SVGアニメーションの描画
-/////////////////////////////////////////////////////////////////////
-// var stroke;
-// stroke = new Vivus(
-//   "mask",
-//   {
-//     //アニメーションをするIDの指定
-//     start: "manual", //自動再生をせずスタートをマニュアルに
-//     type: "scenario-sync", // アニメーションのタイプを設定
-//     duration: 10, //アニメーションの時間設定。数字が小さくなるほど速い
-//     forceRender: false, //パスが更新された場合に再レンダリングさせない
-//     animTimingFunction: Vivus.EASE, //動きの加速減速設定
-//   },
-//   function () {
-//     jQuery("#mask").attr("class", "done"); //描画が終わったらdoneというクラスを追加
-//   }
-// );
-
-// jQuery(window).on("load", function () {
-//   jQuery("#splash").delay(3000).fadeOut("slow"); //ローディング画面を3秒（3000ms）待機してからフェイドアウト
-//   jQuery("#splash_logo").delay(3000).fadeOut("slow"); //ロゴを3秒（3000ms）待機してからフェイドアウト
-//   stroke.play(); //SVGアニメーションの実行
-// });
+///////////////////////////////////////////////////////
+////スライド
+///////////////////////////////////////////////////////
+jQuery(".slider").slick({
+  autoplay: true, //自動的に動き出すか。初期値はfalse。
+  infinite: true, //スライドをループさせるかどうか。初期値はtrue。
+  speed: 500, //スライドのスピード。初期値は300。
+  slidesToShow: 3, //スライドを画面に3枚見せる
+  slidesToScroll: 1, //1回のスクロールで1枚の写真を移動して見せる
+  prevArrow: '<div class="slick-prev"></div>', //矢印部分PreviewのHTMLを変更
+  nextArrow: '<div class="slick-next"></div>', //矢印部分NextのHTMLを変更
+  centerMode: true, //要素を中央ぞろえにする
+  variableWidth: true, //幅の違う画像の高さを揃えて表示
+  dots: true, //下部ドットナビゲーションの表示
+});

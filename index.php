@@ -20,7 +20,7 @@ get_header();
 <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp|Material+Icons+Two+Tone" rel="stylesheet">
 <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
 <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
-<!-- <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-3-1/css/6-3-1.css"> -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
 <main>
 
 	<div class="animeLogo">
@@ -53,59 +53,112 @@ get_header();
 		</div>	
 	</div><!-- animeLogo -->
 
-	<section>
-		<h2>おすすめスキー場</h2>
-			<p>
-				SURF&SNOWでは
-				<br> 各地のおすすめスキー場を
-				<br>紹介しています。
-				<br>
-				<br>各スキー場の口コミや
-				<br>イベントなども紹介して
-				<br>います。
-			</p>
+	<h2 style="text-align: center;">New Gallery</h2>
+	<ul class="slider">
+		<li><img src="/wp-content/themes/twentytwenty-child/image/110.jpg" alt=""></li>
+		<li><img src="/wp-content/themes/twentytwenty-child/image/102.jpeg" alt=""></li>
+		<li><img src="/wp-content/themes/twentytwenty-child/image/105.jpg" alt=""></li>
+		<li><img src="/wp-content/themes/twentytwenty-child/image/106.jpg" alt=""></li>
+		<li><img src="/wp-content/themes/twentytwenty-child/image/109.jpg" alt=""></li>
+		<li><img src="/wp-content/themes/twentytwenty-child/image/107.jpg" alt=""></li>
+
+	</ul><!--/slider-->
+
+	<section class="sectionTop">
+		<div style="text-align: right;">
+			<h2 >おすすめスキー場</h2>
+		</div>
+		<div id="flex-item">
+			<div id="">
+				<img src="/wp-content/themes/twentytwenty-child/image/134.jpg" >
+			</div>
+			<div id="flex-item-child">
+				<div id="pTextLeft">
+					<p>SURF&SNOWでは</p>
+					<p>各地のおすすめスキー場を</p> 
+					<p>紹介しています。</p>
+					<br>
+					<p>各スキー場の口コミや</p>
+					<p>イベントなども紹介して</p>
+					<p>います。</p>
+				</div>				
+			</div>
+		</div>
 	</section>
-	<section>
-		<h2>ゲレンデ情報</h2>
-			<p>
-				SURF&SNOWでは
-				<br>各地のスキー場の
-				<br>ゲレンデ情報を
-				<br>配信しています。
-				<br>
-				<br>各スキー場の口コミや
-				<br>イベントなども紹介して
-				<br>います。
-			</p>
+
+	<section class="sectionTop">
+		<div style="text-align: left;">
+			<h2>ゲレンデ情報</h2>
+		</div>
+		<div id="flex-item">
+			<div id="flex-item-child">
+				<div id="pTextRight">
+					<p>SURF&SNOWでは</p>
+					<p>各地のスキー場の</p> 
+					<p>ゲレンデ情報を</p>
+					<p>配信しています。</p>
+					<br>
+					<p>各スキー場の口コミや</p>
+					<p>イベントなども紹介して</p>
+					<p>います。</p>
+				</div>				
+			</div>
+			<div id="" >
+				<img src="/wp-content/themes/twentytwenty-child/image/ski.jpg" >
+			</div>
+		</div>
 	</section>
-	<section>
-		<h2>周辺の宿泊先</h2>
-			<p>
-				SURF&SNOWでは
-				<br>各地のスキー場の
-				<br>周辺の宿泊先情報を
-				<br>配信しています。
-				<br>
-				<br>各スキー場の口コミや
-				<br>イベントなども紹介して
-				<br>います。
-			</p>
+
+	<section class="sectionTop">
+		<div style="text-align: right;">
+			<h2 >周辺の宿泊先</h2>
+		</div>
+		<div id="flex-item">
+			<div id="" >
+				<img src="/wp-content/themes/twentytwenty-child/image/syukuhaku3.jpg" >
+			</div>
+			<div id="flex-item-child">
+				<div id="pTextLeft">
+					<p>SURF&SNOWでは</p>
+					<p>各地のスキー場の</p> 
+					<p>周辺の宿泊先情報を</p>
+					<p>配信しています。</p>
+					<br>
+					<p>各スキー場の口コミや</p>
+					<p>イベントなども紹介して</p>
+					<p>います。</p>
+				</div>				
+			</div>
+		</div>
 	</section>
-	<section>
-		<h2>積雪情報</h2>
-			<p>
-				SURF&SNOWでは
-				<br>各地のスキー場の
-				<br>積雪情報を
-				<br>配信しています。
-				<br>
-				<br>各スキー場の口コミや
-				<br>イベントなども紹介して
-				<br>います。
-			</p>
+
+	<section class="sectionTop">
+		<div style="text-align: left;">
+			<h2>積雪情報</h2>
+		</div>
+		<div id="flex-item">
+			<div id="flex-item-child">
+				<div id="pTextRight">
+					<p>SURF&SNOWでは</p>
+					<p>各地のスキー場の</p> 
+					<p>積雪情報を</p>
+					<p>配信しています。</p>
+					<br>
+					<p>各スキー場の口コミや</p>
+					<p>イベントなども紹介して</p>
+					<p>います。</p>
+				</div>				
+			</div>
+			<div id="" >
+				<img src="/wp-content/themes/twentytwenty-child/image/sekisetu2.jpg" >
+			</div>
+		</div>
 	</section>
 
 
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </main><!-- #site-content -->
 
 

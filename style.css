@@ -274,7 +274,143 @@ footer {
     transform: scaleX(0);
   }
 }
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
 
+/* section要素 */
+.sectionTop {
+  position: relative;
+  width: 70vw;
+  margin: 0 auto;
+}
+
+/* TOP/フレックス親要素 */
+#flex-item {
+  display: flex;
+  justify-content: space-between;
+  /* justify-content: center; */
+  flex-wrap: wrap;
+}
+/* TOP/フレックス子要素 */
+#flex-item-child {
+  width: 50%;
+  /* height: 50%; */
+}
+/* TOP 文章部分 左寄せ*/
+#pTextLeft {
+  text-align: left;
+  margin: 50px 0 0 50px;
+}
+/* TOP 文章部分 右寄せ*/
+#pTextRight {
+  text-align: right;
+  margin: 50px 50px 0 0;
+}
+/*==================================================
+スライダーのためのcss
+===================================*/
+.slider {
+  /*横幅94%で左右に余白を持たせて中央寄せ*/
+  width: 94%;
+  margin: 0 auto;
+}
+
+.slider img {
+  width: 60vw; /*スライダー内の画像を60vwにしてレスポンシブ化*/
+  height: auto;
+  border-radius: 10px;
+}
+
+.slider .slick-slide {
+  transform: scale(0.8); /*左右の画像のサイズを80%に*/
+  transition: all 1s; /*拡大や透過のアニメーションを0.5秒で行う*/
+  opacity: 0.5; /*透過50%*/
+}
+
+.slider .slick-slide.slick-center {
+  transform: scale(1); /*中央の画像のサイズだけ等倍に*/
+  opacity: 1; /*透過なし*/
+}
+
+/*矢印の設定*/
+
+/*戻る、次へ矢印の位置*/
+.slick-prev,
+.slick-next {
+  position: absolute; /*絶対配置にする*/
+  top: 42%;
+  cursor: pointer; /*マウスカーソルを指マークに*/
+  outline: none; /*クリックをしたら出てくる枠線を消す*/
+  border-top: 2px solid #666; /*矢印の色*/
+  border-right: 2px solid #666; /*矢印の色*/
+  height: 15px;
+  width: 15px;
+}
+
+.slick-prev {
+  /*戻る矢印の位置と形状*/
+
+  left: -1.5%;
+  transform: rotate(-135deg);
+}
+
+.slick-next {
+  /*次へ矢印の位置と形状*/
+  right: -1.5%;
+  transform: rotate(45deg);
+}
+
+/*ドットナビゲーションの設定*/
+
+.slick-dots {
+  text-align: center;
+  margin: 20px 0 0 0;
+}
+
+.slick-dots li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.slick-dots button {
+  color: transparent;
+  outline: none;
+  width: 8px; /*ドットボタンのサイズ*/
+  height: 8px; /*ドットボタンのサイズ*/
+  display: block;
+  border-radius: 50%;
+  background: #ccc; /*ドットボタンの色*/
+}
+
+.slick-dots .slick-active button {
+  background: #333; /*ドットボタンの現在地表示の色*/
+}
+
+/*========= レイアウトのためのCSS ===============*/
+
+body {
+  background: #eee;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: #333;
+}
+
+a:hover,
+a:active {
+  text-decoration: none;
+}
 /*//////////////////////////////////////////////////////////////////////////////
 //デフォルト
 ////////////////////////////////////////////////////////////////////////////////*/
@@ -299,19 +435,19 @@ cite,
 code,
 em,
 font,
-img,
+/* img, */
 small,
 strike,
 sub,
 sup,
 li,
 ol,
-ul,
+/* ul, */
 fieldset,
 form,
 label,
 legend,
-button,
+/* button, */
 table,
 caption,
 tr,
@@ -841,7 +977,7 @@ video {
 }
 
 svg,
-img,
+/* img, */
 embed,
 object {
   display: block;
@@ -947,7 +1083,7 @@ input[type="checkbox"]:checked::before {
 
 input,
 textarea,
-button,
+/* button, */
 .button,
 .faux-button,
 .wp-block-button__link,
@@ -960,7 +1096,7 @@ button,
 @supports (font-variation-settings: normal) {
   input,
   textarea,
-  button,
+  /* button, */
   .button,
   .faux-button,
   .faux-button.more-link,
@@ -1045,7 +1181,7 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 
-button,
+/* button, */
 .button,
 .faux-button,
 .wp-block-button__link,
