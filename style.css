@@ -39,19 +39,14 @@
 //オリジナル
 ////////////////////////////////////////////////////////////////////////////////*/
 /* フッター */
-.wrapper {
-  min-height: 100vh;
-  position: relative; /*←相対位置*/
-  padding-bottom: 120px; /*←footerの高さ*/
-  box-sizing: border-box; /*←全て含めてmin-height:100vhに*/
-}
+
 footer {
   width: 100%;
   color: #fff;
   text-align: center;
   padding: 30px 0;
-
-  position: absolute; /*←絶対位置*/
+  /* position: absolute;  */
+  position: relative; /*←現在の表示位置から相対的に要素の位置を指定*/
   bottom: 0; /*下に固定*/
 }
 
@@ -77,61 +72,102 @@ footer {
   padding: 0 0 0 25px;
   float: left;
 }
+
 /* ビデオアニメーション */
 #video-area {
-  position: fixed;
-  z-index: -1; /*最背面に設定*/
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  z-index: -1;
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
   overflow: hidden;
+  object-position: 100% 100%;
+  /* 領域内に収まりきらない内容を表示しない */
 }
+
 #video {
   /* 上下左右中央に配置 */
   position: absolute;
   z-index: -1;
-  /* z-index: auto; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   /*縦横幅指定*/
-  width: 177.77777778vh; /* 16:9 の幅→16 ÷ 9＝ 177.77% */
-  height: 56.25vw; /* 16:9の幅 → 9 ÷ 16 = 56.25% */
+  width: 177.77777778vh;
+  height: 56.25vw;
   min-height: 100%;
   min-width: 100%;
+  opacity: 0.9; /* 要素透明率 */
+  overflow: hidden;
 }
-
-/*========= レイアウトのためのCSS ===============*/
-
-p {
-  margin: 20px 10px;
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-@media screen and (max-width: 768px) {
-  p {
-    font-size: 0.9rem;
-  }
-}
-
 /*==================================================
 背景色が伸びて文字出現
 ===================================*/
+/*========= レイアウトのためのCSS ===============*/
 
-/*全共通*/
+.animeLogo {
+  position: relative;
+}
+.animeLogoString {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 0;
+}
+#moveLogo {
+  font-size: 80px;
+  color: #ffc639;
+  letter-spacing: 3px;
+}
+#moveLogoSub {
+  color: #ffc639;
+  letter-spacing: 2px;
+  font-size: 30px;
+}
+/* スマホ用のスタイリング */
+@media screen and (max-width: 768px) {
+  #moveLogo {
+    /* font-size: 48px; */
+  }
+}
 
+/*全共通 /中の文字と左から右アニメーション*/
+/* メインロゴ */
 .bgextend {
   animation-name: bgextendAnimeBase;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
+  animation-duration: 2s; /* 1 回のアニメーション周期が完了するまでの所要時間 */
+  animation-fill-mode: forwards; /* アニメーション終了後の状態を指定する@keyframesの「100%(to)」のスタイルが適用 */
   position: relative;
   overflow: hidden; /*　はみ出た色要素を隠す　*/
   opacity: 0;
 }
 
 @keyframes bgextendAnimeBase {
+  /* 最初と最後だけ指定する場合はfrom /toでも指定できる */
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+/* サブロゴ */
+.bgextendSub {
+  animation-name: bgextendAnimeBaseSub;
+  animation-duration: 2s; /* 1 回のアニメーション周期が完了するまでの所要時間 */
+  animation-delay: 1s; /* アニメーションをいつ開始するかを指定 */
+  animation-fill-mode: forwards; /* アニメーション終了後の状態を指定する@keyframesの「100%(to)」のスタイルが適用 */
+  position: relative;
+  overflow: hidden; /*　はみ出た色要素を隠す　*/
+  opacity: 0;
+}
+
+@keyframes bgextendAnimeBaseSub {
+  /* 最初と最後だけ指定する場合はfrom /toでも指定できる */
   from {
     opacity: 0;
   }
@@ -141,12 +177,19 @@ p {
   }
 }
 
-/*中の要素*/
+/*中の要素(/文字の部分)*/
 .bgappear {
   animation-name: bgextendAnimeSecond;
-  animation-duration: 1s;
-  animation-delay: 0.6s;
-  animation-fill-mode: forwards;
+  animation-duration: 2s; /* 1 回のアニメーション周期が完了するまでの所要時間 */
+  animation-delay: 0.6s; /* アニメーションをいつ開始するかを指定 */
+  animation-fill-mode: forwards; /* アニメーション終了後の状態を指定する@keyframesの「100%(to)」のスタイルが適用 */
+  opacity: 0;
+}
+.bgappearSub {
+  animation-name: bgextendAnimeSecond;
+  animation-duration: 2s; /* 1 回のアニメーション周期が完了するまでの所要時間 */
+  animation-delay: 1s; /* アニメーションをいつ開始するかを指定 */
+  animation-fill-mode: forwards; /* アニメーション終了後の状態を指定する@keyframesの「100%(to)」のスタイルが適用 */
   opacity: 0;
 }
 
@@ -159,16 +202,28 @@ p {
   }
 }
 
-/*左から右*/
+/* スクロールをしたら出現する要素にはじめに透過0を指定　*/
+.bgappearTrigger,
+.bgLRextendTrigger {
+  opacity: 0;
+}
+/* スクロールをしたら出現する要素にはじめに透過0を指定　*/
+.bgappearSubTrigger,
+.bgLRextendSubTrigger {
+  opacity: 0;
+}
+/*左から右アニメ(メインロゴ)*/
 .bgLRextend::before {
   animation-name: bgLRextendAnime;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
+  animation-duration: 2s; /* 1 回のアニメーション周期が完了するまでの所要時間 */
+  animation-fill-mode: forwards; /* アニメーション終了後の状態を指定する@keyframesの「100%(to)」のスタイルが適用 */
   content: "";
   position: absolute;
   width: 100%;
-  height: 100%;
-  background-color: #666; /*伸びる背景色の設定*/
+  /* height: 100%; */
+  height: 80px;
+  background-color: #ffc639; /*伸びる背景色の設定*/
+  opacity: 1;
 }
 @keyframes bgLRextendAnime {
   0% {
@@ -188,12 +243,174 @@ p {
   }
 }
 
-/* スクロールをしたら出現する要素にはじめに透過0を指定　*/
-.bgappearTrigger,
-.bgLRextendTrigger {
-  opacity: 0;
+/*左から右アニメ(サブロゴ)*/
+.bgLRextendSub::before {
+  animation-name: bgLRextendSubAnime;
+  animation-delay: 1s; /* アニメーションをいつ開始するかを指定 */
+  animation-duration: 2s; /* 1 回のアニメーション周期が完了するまでの所要時間 */
+  animation-fill-mode: forwards; /* アニメーション終了後の状態を指定する@keyframesの「100%(to)」のスタイルが適用 */
+  content: "";
+  position: absolute;
+  width: 100%;
+  /* height: 100%; */
+  height: 30px;
+  background-color: #ffc639; /*伸びる背景色の設定*/
+  opacity: 1;
+}
+@keyframes bgLRextendSubAnime {
+  0% {
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  50% {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+  50.001% {
+    transform-origin: right;
+  }
+  100% {
+    transform-origin: right;
+    transform: scaleX(0);
+  }
+}
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
 
+/* section要素 */
+.sectionTop {
+  position: relative;
+  width: 70vw;
+  margin: 0 auto;
+}
+
+/* TOP/フレックス親要素 */
+#flex-item {
+  display: flex;
+  justify-content: space-between;
+  /* justify-content: center; */
+  flex-wrap: wrap;
+}
+/* TOP/フレックス子要素 */
+#flex-item-child {
+  width: 50%;
+  /* height: 50%; */
+}
+/* TOP 文章部分 左寄せ*/
+#pTextLeft {
+  text-align: left;
+  margin: 50px 0 0 50px;
+}
+/* TOP 文章部分 右寄せ*/
+#pTextRight {
+  text-align: right;
+  margin: 50px 50px 0 0;
+}
+/*==================================================
+スライダーのためのcss
+===================================*/
+.slider {
+  /*横幅94%で左右に余白を持たせて中央寄せ*/
+  width: 94%;
+  margin: 0 auto;
+}
+
+.slider img {
+  width: 60vw; /*スライダー内の画像を60vwにしてレスポンシブ化*/
+  height: auto;
+  border-radius: 10px;
+}
+
+.slider .slick-slide {
+  transform: scale(0.8); /*左右の画像のサイズを80%に*/
+  transition: all 1s; /*拡大や透過のアニメーションを0.5秒で行う*/
+  opacity: 0.5; /*透過50%*/
+}
+
+.slider .slick-slide.slick-center {
+  transform: scale(1); /*中央の画像のサイズだけ等倍に*/
+  opacity: 1; /*透過なし*/
+}
+
+/*矢印の設定*/
+
+/*戻る、次へ矢印の位置*/
+.slick-prev,
+.slick-next {
+  position: absolute; /*絶対配置にする*/
+  top: 42%;
+  cursor: pointer; /*マウスカーソルを指マークに*/
+  outline: none; /*クリックをしたら出てくる枠線を消す*/
+  border-top: 2px solid #666; /*矢印の色*/
+  border-right: 2px solid #666; /*矢印の色*/
+  height: 15px;
+  width: 15px;
+}
+
+.slick-prev {
+  /*戻る矢印の位置と形状*/
+
+  left: -1.5%;
+  transform: rotate(-135deg);
+}
+
+.slick-next {
+  /*次へ矢印の位置と形状*/
+  right: -1.5%;
+  transform: rotate(45deg);
+}
+
+/*ドットナビゲーションの設定*/
+
+.slick-dots {
+  text-align: center;
+  margin: 20px 0 0 0;
+}
+
+.slick-dots li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.slick-dots button {
+  color: transparent;
+  outline: none;
+  width: 8px; /*ドットボタンのサイズ*/
+  height: 8px; /*ドットボタンのサイズ*/
+  display: block;
+  border-radius: 50%;
+  background: #ccc; /*ドットボタンの色*/
+}
+
+.slick-dots .slick-active button {
+  background: #333; /*ドットボタンの現在地表示の色*/
+}
+
+/*========= レイアウトのためのCSS ===============*/
+
+body {
+  background: #eee;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: #333;
+}
+
+a:hover,
+a:active {
+  text-decoration: none;
+}
 /*//////////////////////////////////////////////////////////////////////////////
 //デフォルト
 ////////////////////////////////////////////////////////////////////////////////*/
@@ -204,13 +421,13 @@ body {
   padding: 0;
 }
 
-h1,
+/* h1,
 h2,
 h3,
 h4,
 h5,
-h6,
-p,
+h6, */
+/* p, */
 blockquote,
 address,
 big,
@@ -218,19 +435,19 @@ cite,
 code,
 em,
 font,
-img,
+/* img, */
 small,
 strike,
 sub,
 sup,
 li,
 ol,
-ul,
+/* ul, */
 fieldset,
 form,
 label,
 legend,
-button,
+/* button, */
 table,
 caption,
 tr,
@@ -760,7 +977,7 @@ video {
 }
 
 svg,
-img,
+/* img, */
 embed,
 object {
   display: block;
@@ -866,7 +1083,7 @@ input[type="checkbox"]:checked::before {
 
 input,
 textarea,
-button,
+/* button, */
 .button,
 .faux-button,
 .wp-block-button__link,
@@ -879,7 +1096,7 @@ button,
 @supports (font-variation-settings: normal) {
   input,
   textarea,
-  button,
+  /* button, */
   .button,
   .faux-button,
   .faux-button.more-link,
@@ -964,7 +1181,7 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 
-button,
+/* button, */
 .button,
 .faux-button,
 .wp-block-button__link,
@@ -1119,10 +1336,10 @@ th {
 
 /* Sections ---------------------------------- */
 
-section {
+/* section {
   padding: 5rem 0;
   width: 100%;
-}
+} */
 
 .section-inner {
   margin-left: auto;
@@ -1356,9 +1573,9 @@ button.toggle {
 /* Image Classes ----------------------------- */
 
 .bg-image {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-position: center; /* 画像表示位置 */
+  background-repeat: no-repeat; /* 画像表示を繰り返さない */
+  background-size: cover; /* 画像をコンテナーいっぱいにできるだけ大きく拡大縮小 */
 }
 
 .bg-attachment-fixed {
@@ -1478,7 +1695,11 @@ ul.social-icons li {
 
 #site-header {
   background: #fff;
-  position: relative;
+  position: fixed;
+  top: 0; /* 上下の固定位置を上から0pxにする */
+  width: 100%; /* 幅いっぱいを指定 */
+  height: 100px; /* 高さを50pxに指定 */
+  padding: 20px 50px; /* ヘッダーに上下左右それぞれ余白を指定 */
 }
 
 .header-inner {
