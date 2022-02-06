@@ -78,3 +78,47 @@ jQuery(".slider").slick({
   variableWidth: true, //幅の違う画像の高さを揃えて表示
   dots: true, //下部ドットナビゲーションの表示
 });
+
+//H2スクロールをするたびにアニメーションを行う設定(右から左)
+jQuery(".backInRightTrigger").on("inview", function (event, isInView) {
+  if (isInView) {
+    //表示領域に入った時
+    jQuery(this).addClass("animate__animated animate__fadeInRight"); //クラス名が付与
+  } else {
+    //表示領域から出た時
+    jQuery(this).removeClass("animate__animated animate__fadeInRight"); //クラス名が除去
+  }
+});
+//H2スクロールをするたびにアニメーションを行う設定(左から右)
+jQuery(".backInLeftTrigger").on("inview", function (event, isInView) {
+  if (isInView) {
+    //表示領域に入った時
+    jQuery(this).addClass("animate__animated animate__fadeInLeft"); //クラス名が付与
+  } else {
+    //表示領域から出た時
+    jQuery(this).removeClass("animate__animated animate__fadeInLeft"); //クラス名が除去
+  }
+});
+
+//SVGアニメーションの描画
+var stroke;
+stroke = new Vivus(
+  "mask",
+  {
+    //アニメーションをするIDの指定
+    start: "manual", //自動再生をせずスタートをマニュアルに
+    type: "scenario-sync", // アニメーションのタイプを設定
+    duration: 10, //アニメーションの時間設定。数字が小さくなるほど速い
+    forceRender: false, //パスが更新された場合に再レンダリングさせない
+    animTimingFunction: Vivus.EASE, //動きの加速減速設定
+  },
+  function () {
+    jQuery("#mask").attr("class", "done"); //描画が終わったらdoneというクラスを追加
+  }
+);
+
+jQuery(window).on("load", function () {
+  jQuery("#splash").delay(3000).fadeOut("slow"); //ローディング画面を3秒（3000ms）待機してからフェイドアウト
+  jQuery("#splash_logo").delay(3000).fadeOut("slow"); //ロゴを3秒（3000ms）待機してからフェイドアウト
+  stroke.play(); //SVGアニメーションの実行
+});
